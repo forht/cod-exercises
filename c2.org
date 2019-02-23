@@ -20,9 +20,29 @@
         sll         $t0, $t0, 2
         add         $t0, $t0, $s6
         lw          $t0, 0($t0)
-        sw          $t0, 0($s7)
+        sw          $t0, 32($s7)
 #+END_SRC
 
+* 2.4
+
+#+BEGIN_SRC c
+B[g] = A[f] + A[f+1]
+#+END_SRC
+
+* 2.5
+
+#+BEGIN_SRC mips
+          lw          $s0, 0($t0)
+          lw          $t0, 4($t0)
+          add         $t0, $t0, $s0
+          sw          $t0, 0($t1)
+#+END_SRC
+
+* 2.6
+
+#+BEGIN_SRC c
+
+#+END_SRC
 
 
 
