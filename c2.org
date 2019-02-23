@@ -61,7 +61,7 @@ B[g] = A[f] + A[f+1]
 
 * 2.7
 
-0xabcdef12
+Big endian:
 
 0: ab
 1: cd
