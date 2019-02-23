@@ -1,7 +1,6 @@
 * 2.1
 
  #+BEGIN_SRC mips
-   # f:s0 g:s1 h:s2
            addi        $s0, $s2, -5
            add         $s0, $s0, $s1
  #+END_SRC
@@ -50,8 +49,6 @@ B[g] = A[f] + A[f+1]
 #+END_SRC
 
 #+BEGIN_SRC mips
-  # $s6
-
           lw          $s0, 0($s6)
           lw          $s1, 4($s6)
           lw          $s3, 12($s6)
@@ -61,3 +58,31 @@ B[g] = A[f] + A[f+1]
           sw          $s1, 12($s6)
           sw          $s3, 16($s6)
 #+END_SRC
+
+* 2.7
+
+0xabcdef12
+
+0: ab
+1: cd
+2: ef
+3: 12
+
+* 2.8
+
+#+BEGIN_SRC lua :results output
+  # 0xabcdef12
+  sum = 0
+  n = {2, 1, 15, 14, 13, 12, 11, 10}
+  for i, v in ipairs(n) do
+     sum = sum + v * (1 << (i - 1 << 2))
+  end
+  print( sum )
+#+END_SRC
+
+#+RESULTS:
+: 2882400018
+
+
+
+
