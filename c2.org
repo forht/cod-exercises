@@ -1,0 +1,32 @@
+* 2.1
+
+ #+BEGIN_SRC mips
+   # f:s0 g:s1 h:s2
+           addi        $s0, $s2, -5
+           add         $s0, $s0, $s1
+ #+END_SRC
+
+* 2.2
+
+#+BEGIN_SRC C
+  f = g + h; 
+  f += i;
+#+END_SRC
+
+* 2.3
+
+#+BEGIN_SRC mips
+        sub         $t0, $s3, $s4
+        sll         $t0, $t0, 2
+        add         $t0, $t0, $s6
+        lw          $t0, 0($t0)
+        sw          $t0, 0($s7)
+#+END_SRC
+
+
+
+
+
+
+
+
