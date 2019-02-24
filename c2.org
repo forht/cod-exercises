@@ -95,6 +95,17 @@ Big endian:
           sw          $t0, 32($s7)
 #+END_SRC
 
+* 2.10
+
+#+BEGIN_SRC c
+f = 2 * A
+#+END_SRC
+
+* 2.14
+
+#+BEGIN_SRC mips
+  add $s0, $s0, $s0 # R type
+#+END_SRC
 
 
 
