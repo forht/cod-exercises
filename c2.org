@@ -71,7 +71,7 @@ Big endian:
 * 2.8
 
 #+BEGIN_SRC lua :results output
-  # 0xabcdef12
+  -- 0xabcdef12
   sum = 0
   n = {2, 1, 15, 14, 13, 12, 11, 10}
   for i, v in ipairs(n) do
@@ -80,8 +80,20 @@ Big endian:
   print( sum )
 #+END_SRC
 
-#+RESULTS:
-: 2882400018
+2882400018
+
+* 2.9
+
+#+BEGIN_SRC mips
+          sll         $s3, $s3, 2
+          sll         $s4, $s4, 2
+          add         $t0, $s6, $s3 
+          lw          $t1, 0($t0)
+          add         $t0, $s6, $s4
+          lw          $t2, 0($t0)
+          add         $t0, $t1, $t2
+          sw          $t0, 32($s7)
+#+END_SRC
 
 
 
