@@ -147,3 +147,40 @@ This considers the first bit as bit 1, not bit 0.
         or          $t1, $t1, $t2
 #+END_SRC
 
+* 2.21
+
+#+BEGIN_SRC mips
+          nor         $t1, $t2, $0
+#+END_SRC
+
+* 2.22
+
+#+BEGIN_SRC mips
+        lw          $t1, 0($s1)
+        sll         $t1, $t1, 4
+#+END_SRC
+
+* 2.27
+
+#+BEGIN_SRC mips
+        li          $t0, 0
+extloop:
+        slt         $t2, $t0, $s0
+        beq         $t2, $zero, end
+        li          $t1, 0
+        addi        $t3, $s2, 0
+intloop:
+        slt         $t2, $t1, $s2
+        beq         $t2, 0, intloopend
+        add         $t4, $t0, $t1
+        sw          $t4, 0($t3)
+        addi        $t3, $t3, 4
+        addi        $t1, $t1, 1
+        j           intloop
+intloopend:
+        addi        $t0, $t0, 1
+        j           extloop
+end:
+#+END_SRC
+
+
