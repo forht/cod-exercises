@@ -107,5 +107,43 @@ f = 2 * A
   add $s0, $s0, $s0 # R type
 #+END_SRC
 
+* 2.15
 
+I Type 
+
+|  6 |  5 | 5 | 16 |
+|----+----+---+----|
+| 43 | 10 | 9 | 32 |
+
+1010.1101.0100.1001.0000.0000.0010.0000
+
+0xad490020
+
+* 2.16
+
+R Type
+
+#+BEGIN_SRC mips
+sub v1, v0, v1
+#+END_SRC
+
+0x00621822
+
+* 2.19
+
+1. 0x12345678
+2. 0xAAAAAAA0
+3. 0x00005545
+
+* 2.20
+
+This considers the first bit as bit 1, not bit 0.
+
+#+BEGIN_SRC mips
+        andi        $t2, $t0, 0xfc00
+        sll         $t2, $t2, 15
+        li          $t3, 0x81ffffff
+        and         $t1, $t1, $t3
+        or          $t1, $t1, $t2
+#+END_SRC
 
