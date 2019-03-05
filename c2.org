@@ -209,4 +209,23 @@ END:
     jr      $ra
 #+END_SRC
 
+* 2.34
+
+#+BEGIN_SRC mips
+f:
+    addiu   $sp, $sp, -24
+    sw      $ra, 16($sp)
+    sw      $a2, 32($sp)
+    sw      $a3, 36($sp)
+    jal     func
+    or      $a0, $zero, $v0
+    lw      $a2, 32($sp)
+    lw      $a3, 36($sp)
+    addu    $a1, $a2, $a3
+    jal     func
+    lw      $ra, 16($sp)
+    addiu   $sp, $sp, 24
+    jr      $ra
+#+END_SRC
+
 
