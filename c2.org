@@ -234,13 +234,13 @@ f:
 atoi:
     # add 1 to $a0 if a0 = '-'
     ori     $t0, $zero, 45
-    lb      $t1, 0($a0)
+    lbu     $t1, 0($a0)
     seq     $t9, $t1, $t0
     add     $a0, $a0, $t9
     # go to the end of the string
     or      $t0, $a0, $zero
 LOOP1:
-    lb      $t1, 0($t0)
+    lbu     $t1, 0($t0)
     beq     $t1, $zero, END1
     addi    $t0, $t0, 1
     j       LOOP1
@@ -257,7 +257,7 @@ CONV:
     or     $v0, $zero, $zero
 LOOP2:
     beq     $t0, $a0, END2
-    lb      $t1, 0($t0)
+    lbu     $t1, 0($t0)
     addi    $t1, $t1, -48
     sltu    $t3, $t1, 10
     bne     $t3, $zero, GOODDIG
