@@ -228,4 +228,60 @@ f:
     jr      $ra
 #+END_SRC
 
+* 2.37
+
+#+BEGIN_SRC mips
+atoi:
+    # add 1 to $a0 if a0 = '-'
+    ori     $t0, $zero, 45
+    lb      $t1, 0($a0)
+    seq     $t9, $t1, $t0
+    add     $a0, $a0, $t9
+    # go to the end of the string
+    or      $t0, $a0, $zero
+LOOP1:
+    lb      $t1, 0($t0)
+    beq     $t1, $zero, END1
+    addi    $t0, $t0, 1
+    j       LOOP1
+END1:
+    # if string is '' or '-' return -1
+    bne     $a0, $t0, CONV
+    addi    $v0, $zero, -1
+    jr      $ra
+CONV:
+    addi    $t0, $t0, -1
+    addi    $a0, $a0, -1
+    # which power of ten
+    or     $t2, $zero, $zero
+    or     $v0, $zero, $zero
+LOOP2:
+    beq     $t0, $a0, END2
+    lb      $t1, 0($t0)
+    addi    $t1, $t1, -48
+    sltu    $t3, $t1, 10
+    bne     $t3, $zero, GOODDIG
+    addi    $v0, $zero, -1
+    jr      $ra
+GOODDIG:
+    or      $t3, $t2, $zero
+MULT:
+    beq     $t3, $zero, MULTEND
+    sll     $t4, $t1, 1
+    sll     $t5, $t1, 3
+    add     $t1, $t4, $t5
+    addi    $t3, $t3, -1
+    j       MULT
+MULTEND:
+    add     $v0, $v0, $t1
+    addi    $t0, $t0, -1
+    add     $t2, $t2, 1
+    j       LOOP2
+END2:
+# invert if negative
+    beq     $t9, $zero, END3
+    sub     $v0, $zero, $v0
+END3:
+    jr      $ra
+#+END_SRC
 
